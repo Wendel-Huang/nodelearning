@@ -27,10 +27,14 @@ var path=require('path')
 http.createServer( function (request, response) {  
    // 解析请求，包括文件名
    var pathname = url.parse(request.url).pathname;
+   if(pathname.charAt(pathname.length-1)=='/'){
+      pathname=pathname+'index.html'
+   }
    var myextname=path.extname(pathname);
    var typestring;
    // 输出请求的文件名
    console.log("Request for " + pathname + " received.");
+
 
    if(myextname=='.mp4'){
       typestring='video/mp4';
